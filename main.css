@@ -1,12 +1,105 @@
-ul {
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
 	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+
+/* Begin Custom Styles */
+
+body {
+  background-color: #88f3a2;
+  font-family: helvetica, sans-serif;
+}
+
+.button-panel {
+	padding: 40px;
+}
+
+button {
+	padding: 20px 25px;
+	background-color: #14CE42;
+	color: #fff;
+	font-size: 20px;
+	border: none;
+	border-radius: 3px;
+	outline: none;
+	cursor: pointer;
+}
+
+div.play {
+	padding: 20px 40px;
+}
+
+div.play:nth-child(odd) {
+	background-color: #59ef7e;
+}
+
+div.play p {
+	margin-bottom: 15px;
+	font-size: 0.9em;
+	color: #fff;
+}
+
+ul {
+	padding: 0;
 }
 
 li {
 	display: inline-block;
-	padding-right: 10px;
+  padding: 10px;
+	margin-right: 20px;
+  height: 18px;
+  width: 18px;
+  background-color: #fff;
+  border-radius: 50%;
+  text-align: center;
 }
 
 li:last-of-type {
-	color: red;
+	background-color: #CE4414;
+	color: #fff;
 }

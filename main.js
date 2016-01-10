@@ -16,6 +16,10 @@ function createWhiteBallPool() {
 
 createWhiteBallPool();
 
+// this function isn't actually removing the number every time. 
+// Should be pulling the number at the random index of ballArray
+// instead of pulling from the length of the array
+// because a number already picked can still exist in the length of the array
 function drawWhiteBalls() {
   for (var i = 1; i < 5 + 1; i++) {
     currentBallArray = ballArray.length
@@ -24,6 +28,8 @@ function drawWhiteBalls() {
     ballArray = jQuery.grep(ballArray, function( a ) {
       return a !== num;
     });
+    console.log(ballArray.length)
+    console.log(ballArray)
   };
 };
 
@@ -37,8 +43,10 @@ function drawPowerball() {
 }
 
 function showWinningNums(element, index, array) {
-  $('.winning-numbers ul:last-of-type').append('<li>' +  element +'</li>');
+  $('.winning-numbers div:last-of-type ul').append('<li>' +  element +'</li>');
 }
+
+var playNumber = 0;
 
 $('button').click( function() {
   drawWhiteBalls()
@@ -46,8 +54,13 @@ $('button').click( function() {
   drawPowerball()
   var winningNumbers = ballsDrawn.toString();
   console.log('The winning powerball numbers are: ' + winningNumbers);
-  $('.winning-numbers').append('<ul></ul>');
+  $('.winning-numbers').append('<div class="play"><ul></ul><div>');
   ballsDrawn.forEach(showWinningNums);
+  playNumber += 1;
+  $('.winning-numbers .play:last-of-type').prepend('<p>Play #' + playNumber + ':</p>');
+  if (ballArray.length !== 64) {
+    alert('ERROR: Two of the same number');
+  };
   ballArray = [];
   createWhiteBallPool();
   ballsDrawn = [];
