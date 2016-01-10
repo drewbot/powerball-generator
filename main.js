@@ -5,7 +5,6 @@
 var ballArray = [];
 var ballsDrawn = [];
 var currentBallArray;
-var num;
 var powerball;
 
 function createWhiteBallPool() {
@@ -16,14 +15,11 @@ function createWhiteBallPool() {
 
 createWhiteBallPool();
 
-// this function isn't actually removing the number every time. 
-// Should be pulling the number at the random index of ballArray
-// instead of pulling from the length of the array
-// because a number already picked can still exist in the length of the array
 function drawWhiteBalls() {
   for (var i = 1; i < 5 + 1; i++) {
     currentBallArray = ballArray.length
-    num = Math.floor(Math.random() * (currentBallArray - 1 + 1)) + 1;
+    var index = Math.floor(Math.random() * currentBallArray);
+    var num = ballArray[index];
     ballsDrawn.push(num);
     ballArray = jQuery.grep(ballArray, function( a ) {
       return a !== num;
