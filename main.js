@@ -3,7 +3,6 @@
 ////////////////////////////////////////////////
 
 var ballArray = [];
-console.log(ballArray);
 var ballsDrawn = [];
 var currentBallArray;
 var num;
@@ -16,7 +15,6 @@ function createWhiteBallPool() {
 }
 
 createWhiteBallPool();
-console.log(ballArray);
 
 function drawWhiteBalls() {
   for (var i = 1; i < 5 + 1; i++) {
@@ -26,12 +24,8 @@ function drawWhiteBalls() {
     ballArray = jQuery.grep(ballArray, function( a ) {
       return a !== num;
     });
-    console.log(ballArray.length);
   };
 };
-
-drawWhiteBalls()
-console.log(ballsDrawn);
 
 function getPowerballNum() {
   return Math.floor(Math.random() * (26 - 1 + 1)) + 1;
@@ -42,17 +36,21 @@ function drawPowerball() {
   ballsDrawn.push(powerball);
 }
 
-drawPowerball()
-
-var winningNumbers = ballsDrawn.toString();
-console.log('The winning powerball numbers are: ' + winningNumbers);
-
 function showWinningNums(element, index, array) {
-  $('.winning-numbers').append('<li>' +  element +'</li>');
+  $('.winning-numbers ul:last-of-type').append('<li>' +  element +'</li>');
 }
 
 $('button').click( function() {
+  drawWhiteBalls()
+  console.log(ballsDrawn);
+  drawPowerball()
+  var winningNumbers = ballsDrawn.toString();
+  console.log('The winning powerball numbers are: ' + winningNumbers);
+  $('.winning-numbers').append('<ul></ul>');
   ballsDrawn.forEach(showWinningNums);
+  ballArray = [];
+  createWhiteBallPool();
+  ballsDrawn = [];
 });
 
 
