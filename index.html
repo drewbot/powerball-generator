@@ -5,11 +5,32 @@
 </head>
 <body>
 	<div class="button-panel">
-		<button class="generate">Generate Ticket Numbers</button>
-		<button class="draw">Draw Winning Numbers</button>
+		<div class="generate">
+			<button>Generate Ticket Numbers</button>
+			<label>Enter Ticket Numbers</label>
+			<input type="text" id="ticketWhiteOne">
+			<input type="text" id="ticketWhiteTwo">
+			<input type="text" id="ticketWhiteThree">
+			<input type="text" id="ticketWhiteFour">
+			<input type="text" id="ticketWhiteFive">
+			<input type="text" id="ticketRed">
+			<button>Add</button>
+		</div>
+		<div class="draw">
+			<button>Draw Winning Numbers</button>
+			<label>Enter Winning Numbers</label>
+			<input type="text" id="winningWhiteOne">
+			<input type="text" id="winningWhiteTwo">
+			<input type="text" id="winningWhiteThree">
+			<input type="text" id="winningWhiteFour">
+			<input type="text" id="winningWhiteFive">
+			<input type="text" id="winningRed">
+			<button>Apply</button>
+		</div>
 	</div>
 	<div class="your-numbers"></div>
-	<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+	<!-- <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.0.min.js"></script> -->
+	<script type="text/javascript" src="jquery/dist/jquery.min.js"></script>
 	<script type="text/javascript" src="main.js"></script>
 </body>
 </html>

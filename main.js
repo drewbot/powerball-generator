@@ -59,7 +59,7 @@ function generateTickets() {
   plays.push(playObj);
 
   $('div.play:last-of-type').attr('id', 'play' + playNumber);
-  $('div.play:last-of-type').prepend('<p>Play #' + playNumber + ':</p>');
+  $('div.play:last-of-type').prepend('<label>Play #' + playNumber + ':</label>');
   window.scrollTo(0,document.body.scrollHeight);
 
   if (ballArray.length !== 64) {
@@ -71,7 +71,13 @@ function generateTickets() {
   ballsDrawn = [];
 };
 
-$('button.generate').click(generateTickets);
+$('.generate button:first-of-type').click(generateTickets);
+
+
+// for (var i = 0; i < 100; i++) {
+//   generateTickets();
+// }
+
 
 function arrayCompare(myArray, myPowerball, winArray, winPowerball, divId) {
   var divId = 'div#' + divId;
@@ -92,33 +98,40 @@ function arrayCompare(myArray, myPowerball, winArray, winPowerball, divId) {
     $('.your-numbers').find(divId).find('li:last-of-type').addClass('drawn-number');
   }
 
+  $('.your-numbers').find(divId).append('<div class="outcome"></div>');
+
+  var $outcome = $(divId).find('.outcome')
+  var outcomeText;
+
   if (winPowerballCounter) {
     if (winWhiteCounter === 1) {
-      $('.your-numbers').find(divId).append('<p>You matched 1 white ball and the powerball. <span>You won $4!</span></p>');
+      outcomeText = '<p>You matched 1 white ball and the powerball. <span class="win">You won $4!</span></p>';
     } else if (winWhiteCounter === 2) {
-      $('.your-numbers').find(divId).append('<p>You matched 2 white balls and the powerball. <span>You won $7!</span></p>');
+      outcomeText = '<p>You matched 2 white balls and the powerball. <span class="win">You won $7!</span></p>';
     } else if (winWhiteCounter === 3) {
-      $('.your-numbers').find(divId).append('<p>You matched 3 white balls and the powerball. <span>You won $100!</span></p>');
+      outcomeText = '<p>You matched 3 white balls and the powerball. <span class="win">You won $100!</span></p>';
     } else if (winWhiteCounter === 4) {
-      $('.your-numbers').find(divId).append('<p>You matched 4 white balls and the powerball. <span>You won $50,000!</span></p>');
+      outcomeText = '<p>You matched 4 white balls and the powerball. <span class="win">You won $50,000!</span></p>';
     } else if (winWhiteCounter === 5) {
-      $('.your-numbers').find(divId).append('<p>JACKPOT!!! <span>You won the GRAND PRIZE!!!</span></p>');
+      outcomeText = '<p>JACKPOT!!! <span class="win">You won the GRAND PRIZE!!!</span></p>';
     } else {
-      $('.your-numbers').find(divId).append('<p>You matched the powerball. <span>You won $4!</span></p>');
+      outcomeText = '<p>You matched the powerball. <span class="win">You won $4!</span></p>';
     }
   } else if (winWhiteCounter === 1) {
-    $('.your-numbers').find(divId).append('<p>You matched 1 white ball. <span>No winnings.</span></p>');
+    outcomeText = '<p>You matched 1 white ball. <span>No winnings.</span></p>';
   } else if (winWhiteCounter === 2) {
-    $('.your-numbers').find(divId).append('<p>You matched 2 white balls. <span>No winnings.</span></p>');
+    outcomeText = '<p>You matched 2 white balls. <span>No winnings.</span></p>';
   } else if (winWhiteCounter === 3) {
-    $('.your-numbers').find(divId).append('<p>You matched 3 white balls. <span>You won $7!</span></p>');
+    outcomeText = '<p>You matched 3 white balls. <span class="win">You won $7!</span></p>';
   } else if (winWhiteCounter === 4) {
-    $('.your-numbers').find(divId).append('<p>You matched 4 white balls. <span>You won $100!</span></p>');
+    outcomeText = '<p>You matched 4 white balls. <span class="win">You won $100!</span></p>';
   } else if (winWhiteCounter === 5) {
-    $('.your-numbers').find(divId).append('<p>You matched 5 white balls. <span>You won $1,000,000!</span></p>');
+    outcomeText = '<p>You matched 5 white balls. <span class="win">You won $1,000,000!</span></p>';
   } else {
-    $('.your-numbers').find(divId).append('<p>No matches</p>');
+    outcomeText = '<p>No matches</p>';
   }
+
+  $outcome.append(outcomeText);
 }
 
 function drawWinning() {
@@ -126,7 +139,7 @@ function drawWinning() {
   drawPowerball()
 
   var winningPowerball = ballsDrawn.pop();
-  
+
   console.log('winning white balls drawn: ' + ballsDrawn + '. Winning powerball: ' + winningPowerball);
 
   for (var i = 0; i < plays.length; i++) {
@@ -138,7 +151,16 @@ function drawWinning() {
   }
 }
 
-$('button.draw').click(drawWinning)
+$('.draw button:first-of-type').click(drawWinning)
+
+// TODO:
+// On draw hide button panel by sliding up
+// Scroll to top of body
+// Show winning numbers above all the tickets, cetered on white bg
+// Show reset button ("Play again") with winning numbers
+// On reset erase all tickets, hide winning numbers, show button panel
+// Add tooltip on ball input hover to display rules for that type of ball
+//   Ex: "White balls must be between 1 and 69"
 
 
 // plays = [
