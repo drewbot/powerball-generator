@@ -2,16 +2,15 @@
 //              Lotto Generator               //
 ////////////////////////////////////////////////
 
-var ballArray = [];
+var ballPool = [];
 var ballsDrawn = [];
-// var ballsSet = [];
 var powerball;
 var playNumber = 0;
 var plays = [];
 
 function createWhiteBallPool() {
   for (var i = 1; i < 69 + 1; i++) {
-    ballArray.push(i);
+    ballPool.push(i);
   }
 };
 
@@ -19,14 +18,16 @@ createWhiteBallPool();
 
 function drawWinning() {
   for (var i = 1; i < 5 + 1; i++) {
-    var currentBallArray = ballArray.length
-    var index = Math.floor(Math.random() * currentBallArray);
-    var num = ballArray[index];
+    var currentBallPool = ballPool.length
+    var index = Math.floor(Math.random() * currentBallPool);
+    var num = ballPool[index];
     ballsDrawn.push(num);
-    ballArray = jQuery.grep(ballArray, function( a ) {
+    // remove number from ballPool
+    ballPool = jQuery.grep(ballPool, function( a ) {
       return a !== num;
     });
   };
+
   powerball = Math.floor(Math.random() * (26)) + 1;
   ballsDrawn.push(powerball);
 };
@@ -46,14 +47,29 @@ function setWinning() {
   ballsDrawn.push(Number(setRed));
 };
 
+function setTicket() {
+  var setWhiteOne = $('#ticketWhiteOne').val();
+  var setWhiteTwo = $('#ticketWhiteTwo').val();
+  var setWhiteThree = $('#ticketWhiteThree').val();
+  var setWhiteFour = $('#ticketWhiteFour').val();
+  var setWhiteFive = $('#ticketWhiteFive').val();
+  var setRed = $('#ticketRed').val();
+  ballsDrawn.push(Number(setWhiteOne));
+  ballsDrawn.push(Number(setWhiteTwo));
+  ballsDrawn.push(Number(setWhiteThree));
+  ballsDrawn.push(Number(setWhiteFour));
+  ballsDrawn.push(Number(setWhiteFive));
+  ballsDrawn.push(Number(setRed));
+};
+
 function showYourNums(element, index, array) {
   $('.your-numbers div:last-of-type ul').append('<li>' +  element +'</li>');
 };
 
-function generateTickets() {
+function generateTickets(callback) {
   playNumber += 1;
 
-  drawWinning();
+  callback();
 
   $('div.your-numbers').append('<div class="play"><ul></ul><div>');
 
@@ -73,20 +89,26 @@ function generateTickets() {
   $('div.play:last-of-type').prepend('<label>Play #' + playNumber + ':</label>');
   window.scrollTo(0,document.body.scrollHeight);
 
-  if (ballArray.length !== 64) {
-    alert('ERROR: Two of the same number');
-  };
+  // if (ballPool.length !== 64) {
+  //   alert('ERROR: Two of the same number');
+  // };
 
-  ballArray = [];
+  ballPool = [];
   createWhiteBallPool();
   ballsDrawn = [];
 };
 
-$('.generate button:first-of-type').click(generateTickets);
+$('#randomGen').click( function() {
+  generateTickets(drawWinning);
+});
+
+$('#manualGen').click( function() {
+  generateTickets(setTicket);
+});
 
 
 for (var i = 0; i < 100; i++) {
-  generateTickets();
+  generateTickets(drawWinning);
 };
 
 
@@ -175,6 +197,8 @@ function drawAndCompare(callback) {
     var playsObjId = playsObj['id'];
     arrayCompare(playsObjBallsDrawn, playsObjPowerball, ballsDrawn, winningPowerball, playsObjId)
   }
+
+  ballsDrawn = [];
 };
 
 
