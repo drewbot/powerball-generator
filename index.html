@@ -5,6 +5,7 @@
 </head>
 <body>
 	<div class="button-panel">
+
 		<div class="generate">
 			<button id="randomGen">Generate Ticket Numbers</button>
 			<label>Enter Ticket Numbers</label>
@@ -16,6 +17,7 @@
 			<input type="text" id="ticketRed">
 			<button id="manualGen">Add</button>
 		</div>
+
 		<div class="draw">
 			<button id="randomDraw">Draw Winning Numbers</button>
 			<label>Enter Winning Numbers</label>
@@ -28,7 +30,19 @@
 			<button id="manualDraw">Apply</button>
 		</div>
 	</div>
+
+	<div class="final-panel hide">
+		<div class="play">
+			<label>Winning Numbers:</label>
+			<ul></ul>
+		</div>
+		<div>
+			<button id="reset">Reset</button>
+		</div>
+	</div>
+
 	<div class="your-numbers"></div>
+
 	<!-- <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.0.min.js"></script> -->
 	<script type="text/javascript" src="jquery/dist/jquery.min.js"></script>
 	<script type="text/javascript" src="main.js"></script>

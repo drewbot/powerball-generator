@@ -51,22 +51,23 @@ table {
 
 .clearfix:before,
 .clearfix:after {
-  content: " "; // 1
-  display: table; // 2
+  content: " ";
+  display: table;
 }
 
 .clearfix:after {
   clear: both;
 }
 
-/* Begin Custom Styles */
+/*/////////////////// Begin Custom Styles ////////////////////*/
 
 body {
 	background-color: #88f3a2;
   font-family: helvetica, sans-serif;
 }
 
-.button-panel {
+/*/////////////////// Button Panel ////////////////////*/
+.button-panel, .final-panel {
 	position: fixed;
 	top: 0;
 	padding: 30px 0;
@@ -148,6 +149,25 @@ button {
 	margin-bottom: 0;
 }
 
+/*/////////////////// Final Panel ////////////////////*/
+.final-panel {
+	/*display: none;*/
+}
+
+.final-panel div {
+	width: 362px;
+  display: inline-block;
+}
+
+.final-panel label {
+	color: #CE4414 !important;
+}
+
+.final-panel button {
+	margin: 0;
+}
+
+/*/////////////////// Ticket Numbers List ////////////////////*/
 .your-numbers {
 	margin-top: 207px;
 	height: auto;
@@ -235,7 +255,15 @@ div.play ul li:last-of-type.drawn-number {
 	color: #CE4414;
 }
 
+/*/////////////////// Utility ////////////////////*/
 
+.show {
+	display: inline-block;
+}
+
+.hide {
+	display: none;
+}
 
 
 

@@ -66,6 +66,10 @@ function showYourNums(element, index, array) {
   $('.your-numbers div:last-of-type ul').append('<li>' +  element +'</li>');
 };
 
+function showWinningNums(element, index, array) {
+  $('.final-panel ul').append('<li>' +  element +'</li>');
+};
+
 function generateTickets(callback) {
   playNumber += 1;
 
@@ -184,11 +188,15 @@ function arrayCompare(myArray, myPowerball, winArray, winPowerball, divId) {
 function drawAndCompare(callback) {
 
   callback();
-  console.log(typeof ballsDrawn);
+
+  ballsDrawn.forEach(showWinningNums);
 
   var winningPowerball = ballsDrawn.pop();
 
   console.log('winning white balls drawn: ' + ballsDrawn + '. Winning powerball: ' + winningPowerball);
+
+  $('div.button-panel').addClass('hide');
+  $('div.final-panel').removeClass('hide');
 
   for (var i = 0; i < plays.length; i++) {
     var playsObj = plays[i];
@@ -197,8 +205,6 @@ function drawAndCompare(callback) {
     var playsObjId = playsObj['id'];
     arrayCompare(playsObjBallsDrawn, playsObjPowerball, ballsDrawn, winningPowerball, playsObjId)
   }
-
-  ballsDrawn = [];
 };
 
 
@@ -209,6 +215,17 @@ $('#randomDraw').click( function() {
 $('#manualDraw').click( function() {
   drawAndCompare(setWinning);
 });
+
+$('#reset').click( function() {
+  $('div.your-numbers').empty();
+  $('div.button-panel').removeClass('hide');
+  $('div.final-panel').addClass('hide');
+  ballPool = [];
+  ballsDrawn = [];
+  playNumber = 0;
+  plays = [];
+  createWhiteBallPool();
+})
 
 // TODO:
 // On draw hide button panel by sliding up
