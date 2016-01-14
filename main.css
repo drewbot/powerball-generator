@@ -89,7 +89,6 @@ body {
 
 .button-panel div:last-of-type {
 	color: #CE4414;
-	border-right: 2px dotted #ccc;
 }
 
 .button-panel label {
@@ -169,7 +168,6 @@ div.play:last-of-type {
 div.play label {
 	display: block;
 	margin-bottom: 15px;
-	font-size: 0.9em;
 	color: #fff;
 }
 
