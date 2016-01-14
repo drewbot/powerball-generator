@@ -129,17 +129,17 @@ button {
 	transition: all 0.2s ease;
 }
 
-.button-panel div.generate button:hover {
+button:hover {
 	background-color: #14CE42;
 	color: #fff;
 }
 
-.button-panel div.draw button {
+div.draw button {
 	color: #CE4414;
 	border: 2px solid #CE4414;
 }
 
-.button-panel div.draw button:hover {
+div.draw button:hover {
 	background-color: #CE4414;
 	color: #fff;
 }

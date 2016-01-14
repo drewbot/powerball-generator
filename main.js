@@ -189,7 +189,7 @@ function drawAndCompare(callback) {
 
   callback();
 
-  ballsDrawn.forEach(showWinningNums);
+  ballsDrawn.forEach(showWinningNums);  
 
   var winningPowerball = ballsDrawn.pop();
 
@@ -218,6 +218,7 @@ $('#manualDraw').click( function() {
 
 $('#reset').click( function() {
   $('div.your-numbers').empty();
+  $('div.final-panel').find('ul').empty();
   $('div.button-panel').removeClass('hide');
   $('div.final-panel').addClass('hide');
   ballPool = [];
