@@ -39,12 +39,13 @@ function setWinning() {
   var setWhiteFour = $('#winningWhiteFour').val();
   var setWhiteFive = $('#winningWhiteFive').val();
   var setRed = $('#winningRed').val();
-  ballsDrawn.push(Number(setWhiteOne));
-  ballsDrawn.push(Number(setWhiteTwo));
-  ballsDrawn.push(Number(setWhiteThree));
-  ballsDrawn.push(Number(setWhiteFour));
-  ballsDrawn.push(Number(setWhiteFive));
-  ballsDrawn.push(Number(setRed));
+  ballsDrawn.push(Number(setWhiteOne),
+                  Number(setWhiteTwo),
+                  Number(setWhiteThree),
+                  Number(setWhiteFour),
+                  Number(setWhiteFive),
+                  Number(setRed)
+  );
 };
 
 function setTicket() {
@@ -54,12 +55,13 @@ function setTicket() {
   var setWhiteFour = $('#ticketWhiteFour').val();
   var setWhiteFive = $('#ticketWhiteFive').val();
   var setRed = $('#ticketRed').val();
-  ballsDrawn.push(Number(setWhiteOne));
-  ballsDrawn.push(Number(setWhiteTwo));
-  ballsDrawn.push(Number(setWhiteThree));
-  ballsDrawn.push(Number(setWhiteFour));
-  ballsDrawn.push(Number(setWhiteFive));
-  ballsDrawn.push(Number(setRed));
+  ballsDrawn.push(Number(setWhiteOne),
+                  Number(setWhiteTwo),
+                  Number(setWhiteThree),
+                  Number(setWhiteFour),
+                  Number(setWhiteFive),
+                  Number(setRed)
+  );
 };
 
 function showYourNums(element, index, array) {
@@ -104,10 +106,12 @@ function generateTickets(callback) {
 
 $('#randomGen').click( function() {
   generateTickets(drawWinning);
+  $('div.generate input').val('');  // clear input fields just in case there are unused values
 });
 
 $('#manualGen').click( function() {
   generateTickets(setTicket);
+  $('div.generate input').val('');  // clear input fields
 });
 
 
@@ -207,13 +211,47 @@ function drawAndCompare(callback) {
   }
 };
 
+// check number value, alert if not passing
+function checkNumber(value, limit) {
+  if (value > limit || value < 1) {
+    if (limit == 69) {
+      return 'White ball numbers must be between 1 and 69';
+    } else if (limit == 26) {
+      return 'Powerball numbers must be between 1 and 26';
+    }
+  }
+};
+
+$('.generate input').blur(function() {
+  var inputValue = $(this).val();
+  var limit = $(this).attr('data-limit');
+  $(this).focusin();
+  var errorMessage = checkNumber(inputValue, limit);
+  $('.generate').append('<p class="error-message">' + errorMessage + '</p>');
+  setTimeout( function() {
+    $('.generate .error-message').remove();
+  }, 2000);
+});
+
+$('.draw input').blur(function() {
+  var inputValue = $(this).val();
+  var limit = $(this).attr('data-limit');
+  $(this).focusin();
+  var errorMessage = checkNumber(inputValue, limit);
+  $('.draw').append('<p class="error-message">' + errorMessage + '</p>');
+  setTimeout( function() {
+    $('.draw .error-message').remove();
+  }, 2000);
+});
 
 $('#randomDraw').click( function() {
   drawAndCompare(drawWinning);
+  $('input').val(''); // clear input fields just in case there are unused values
 });
 
 $('#manualDraw').click( function() {
   drawAndCompare(setWinning);
+  $('input').val(''); // clear input fields
 });
 
 $('#reset').click( function() {
@@ -231,7 +269,7 @@ $('#reset').click( function() {
 // TODO:
 // On draw hide button panel by sliding up
 // Scroll to top of body
-// Show winning numbers above all the tickets, cetered on white bg
+// Show winning numbers above all the tickets, centered on white bg
 // Show reset button ("Play again") with winning numbers
 // On reset erase all tickets, hide winning numbers, show button panel
 // Add tooltip on ball input hover to display rules for that type of ball

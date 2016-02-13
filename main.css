@@ -61,6 +61,9 @@ table {
 
 /*/////////////////// Begin Custom Styles ////////////////////*/
 
+/*///////////// COLORS ////////////////*/
+/* http://www.colourlovers.com/palette/4018571/Crimea */
+
 body {
 	background-color: #88f3a2;
   font-family: helvetica, sans-serif;
@@ -147,6 +150,11 @@ div.draw button:hover {
 .button-panel div button:last-of-type {
 	display: inline-block;
 	margin-bottom: 0;
+}
+
+.error-message {
+	padding: 30px 0 0 40px;
+	color: #CE4414;
 }
 
 /*/////////////////// Final Panel ////////////////////*/
